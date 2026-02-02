@@ -1,27 +1,38 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Accueil</title>
+    <link rel="stylesheet" href="{% static 'accueil/styles.css' %}">
 </head>
 <body>
-    <h1>{{ message }}</h1>
-    <p>Date du jour : {{ date_du_jour }}</p>
-    <p>Git & Github</p>
+    <div class="container">
+        <h1>{{ message }}</h1>
+        <p>Date du jour : {{ date_du_jour }}</p>
+        <p>Git & Github</p>
 
-    <h2>Liste de tâches</h2>
-    <ul>
-        {% for task in tasks %}
-            <li>{{ task }}</li>
-        {% empty %}
-            <li>Aucune tâche pour le moment.</li>
-        {% endfor %}
-    </ul>
+        <h2>Liste de tâches</h2>
+        <ul class="tasks">
+            {% for task in tasks %}
+                <li>
+                    {{ task.titre }} -
+                    {% if task.terminee %}
+                        Terminé
+                    {% else %}
+                        En cours
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>Aucune tâche pour le moment.</li>
+            {% endfor %}
+        </ul>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Envoyer</button>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
 </body>
 </html>

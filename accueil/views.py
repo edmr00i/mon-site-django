@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from datetime import date, datetime
 from .forms import NomForm
+from .models import Tache
 
 def index(request):
     """Vue index qui affiche un message dépendant de l'heure et gère un formulaire de nom."""
@@ -24,12 +25,8 @@ def index(request):
     else:
         form = NomForm()
 
-    # Liste de tâches à afficher sur la page d'accueil (exemple statique)
-    tasks = [
-        "Acheter du lait",
-        "Terminer la formation Django",
-        "Envoyer l'email de suivi"
-    ]
+    # Récupérer les tâches depuis la base, ordonnées par titre
+    tasks = Tache.objects.order_by('titre')
 
     contexte = {
         'message': message,
