@@ -9,6 +9,15 @@
     <p>Date du jour : {{ date_du_jour }}</p>
     <p>Git & Github</p>
 
+    <h2>Liste de tâches</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% empty %}
+            <li>Aucune tâche pour le moment.</li>
+        {% endfor %}
+    </ul>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
