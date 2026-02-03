@@ -28,10 +28,10 @@
             {% endfor %}
         </ul>
 
-        <form method="post">
+        <form method="post" action="{% url 'accueil:ajouter_tache' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Envoyer</button>
+            <button type="submit">Ajouter Tâche</button>
         </form>
     </div>
 </body>

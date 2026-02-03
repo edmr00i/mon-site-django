@@ -4,9 +4,16 @@ from django.db import models
 class Tache(models.Model):
 	"""Modèle représentant une tâche simple.
 
-	Champs:
-	- titre: texte (max 200 caractères)
-	- terminee: booléen indiquant si la tâche est terminée (False par défaut)
+	Ce modèle permet de créer et gérer des tâches avec un titre et un statut de
+	complétion. Les tâches sont ordonnables et affichables facilement.
+
+	Attributs:
+		titre (CharField): Le titre ou description de la tâche (max 200 caractères).
+		terminee (BooleanField): Booléen indiquant si la tâche est terminée.
+							 Défaut: False.
+
+	Méthodes:
+		__str__(): Retourne une représentation lisible de la tâche avec son statut.
 	"""
 	titre = models.CharField(max_length=200)
 	terminee = models.BooleanField(default=False)
